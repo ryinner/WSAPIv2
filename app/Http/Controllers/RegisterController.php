@@ -14,11 +14,11 @@ class RegisterController extends Controller
         // return var_dump($request->all());
 
         $validator = Validator::make($request->all(),[
-            'first_name' => 'required',
-            'last_name ' => 'required',
-            'phone' => 'required|unique:users',
-            'document_number' => 'required|integer',
-            'password  ' => 'required',
+            'first_name'        => 'required|string',
+            'last_name'         => 'required|string',
+            'phone'             => 'required|unique:users|numeric',
+            'document_number'   => 'required|numeric',
+            'password'          => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -35,6 +35,7 @@ class RegisterController extends Controller
 
             $user = new User($request->all());
             $user->api_token = rand();
+            $user->save();
             return [
                     'data'=> [
                         'token' => $user->api_token,
