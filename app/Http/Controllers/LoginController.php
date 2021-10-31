@@ -29,9 +29,11 @@ class LoginController extends Controller
         } else {
 
             $user = User::where('phone', $request->phone)->first();
-            
+
             if ($user && $request->password == $user->password) {
                 
+                $_SESSION['token'] = $user->api_token;
+
                 return response()->json([ 
                     'data' => [
                         'token' => $user->api_token
