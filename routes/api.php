@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AirportsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -23,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register', [RegisterController::class, 'register']);
 
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/tour', [AirportsController::class, 'tour']);
