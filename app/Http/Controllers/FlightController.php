@@ -11,10 +11,10 @@ class FlightController extends Controller
     public function flight(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'from'       => 'required|integer',
-            'to'         => 'required|integer',
-            'date1'      => 'required|date',
-            'date2'      => 'required|date',
+            'from'       => 'required|integer|exists:flights,from_id',
+            'to'         => 'required|integer|exists:flights,to_id',
+            'date1'      => 'required|date|exists:booking,date_from',
+            'date2'      => 'required|date|exists:booking,date_back',
             'passengers' => 'required|integer|between:1,8'
         ]);
 
