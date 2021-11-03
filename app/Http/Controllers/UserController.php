@@ -37,9 +37,10 @@ class UserController extends Controller
     
                 foreach ($passanger as $value) {
                     $parsedPassangers[] = [
-                        'first_name' => $value['first_name'],
-                        'last_name' => $value['last_name'],
-                        'birth_date' => $value['birth_date'],
+                        'id'              => $value['id'],
+                        'first_name'      => $value['first_name'],
+                        'last_name'       => $value['last_name'],
+                        'birth_date'      => $value['birth_date'],
                         'document_number' => $value['document_number'],
                     ];
                 }
