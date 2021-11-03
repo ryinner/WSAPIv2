@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "b60109f4-609a-498d-8cf3-c2fdce5e046a",
+		"name": "WS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registr",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://restapi/api/register?first_name=Ivan&last_name=Ivanov&phone=89001234567&document_number=7567999222&password=paSSword",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"register"
+					],
+					"query": [
+						{
+							"key": "first_name",
+							"value": "Ivan"
+						},
+						{
+							"key": "last_name",
+							"value": "Ivanov"
+						},
+						{
+							"key": "phone",
+							"value": "89001234567"
+						},
+						{
+							"key": "document_number",
+							"value": "7567999222"
+						},
+						{
+							"key": "password",
+							"value": "paSSword"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://restapi/api/login?phone=89001234567&password=paSSword",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"login"
+					],
+					"query": [
+						{
+							"key": "phone",
+							"value": "89001234567"
+						},
+						{
+							"key": "password",
+							"value": "paSSword"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tour",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://restapi/api/tour?query=Kz",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"tour"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Kz"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Flight",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://restapi/api/flight?from=2&to=1&date1=2020-10-01&date2=2020-10-10&passengers=1",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"flight"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "2"
+						},
+						{
+							"key": "to",
+							"value": "1"
+						},
+						{
+							"key": "date1",
+							"value": "2020-10-01"
+						},
+						{
+							"key": "date2",
+							"value": "2020-10-10"
+						},
+						{
+							"key": "passengers",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tourists\": [\r\n        {\r\n            \"first_name\": \"TestCase1_first_name\",\r\n            \"last_name\": \"TestCase1_last_name\",\r\n            \"birth_date\": \"1990-02-20\",\r\n            \"document_number\": \"1234567890\"\r\n        },\r\n        {\r\n            \"first_name\": \"Ivan\",\r\n            \"last_name\": \"Gorbunov\",\r\n            \"birth_date\": \"1990-03-20\",\r\n            \"document_number\": \"1224567890\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://restapi/api/booking?tour_id=12&date_from=2020-10-01",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"booking"
+					],
+					"query": [
+						{
+							"key": "tourists[0]first_name",
+							"value": "TestCase1_first_name",
+							"disabled": true
+						},
+						{
+							"key": "tourists[0]last_name",
+							"value": "TestCase1_last_name",
+							"disabled": true
+						},
+						{
+							"key": "tour_id",
+							"value": "12"
+						},
+						{
+							"key": "date_from",
+							"value": "2020-10-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Booking/Code",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://restapi/api/booking/TESTA",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"booking",
+						"TESTA"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User/Booking",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "testCaseToken",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://restapi/api/user/booking",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"user",
+						"booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "testCaseToken",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://restapi/api/user",
+					"protocol": "http",
+					"host": [
+						"restapi"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
