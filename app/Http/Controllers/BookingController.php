@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Booking;
 use App\Models\Passenger;
 use Illuminate\Http\Request;
@@ -74,8 +75,22 @@ class BookingController extends Controller
     }
 
 
-    public function showBooking($code)
+    public function showBooking(Request $request, $code)
     {
+        $bearer = $request->bearerToken();
+        $user = User::where('api_token',$bearer)->first();
+
+        if (empty($user)) {
+
+            return response()->json([
+                'error' => [
+                    'code' => 401,
+                    'message' => 'Unauthorized'
+                ]
+            ], 401);
+
+        }
+        
         $booking = Booking::where('code', $code)->first();
 
         if (empty($booking)) {
