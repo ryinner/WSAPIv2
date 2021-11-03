@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\FlightController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\AirportsController;
 use App\Http\Controllers\RegisterController;
 
@@ -29,3 +30,5 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/tour', [AirportsController::class, 'tour']);
 
 Route::get('/flight', [FlightController::class, 'flight']);
+
+Route::post('/booking', [BookingController::class, 'booking']);

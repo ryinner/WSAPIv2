@@ -16,7 +16,7 @@ class RegisterController extends Controller
             'first_name'        => 'required|string',
             'last_name'         => 'required|string',
             'phone'             => 'required|unique:users|integer',
-            'document_number'   => 'required|numeric',
+            'document_number'   => 'required|numeric|regex:/^([0-9.]{10})+$/',
             'password'          => 'required|string',
         ]);
 
