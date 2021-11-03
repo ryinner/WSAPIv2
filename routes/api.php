@@ -37,3 +37,5 @@ Route::post('/booking', [BookingController::class, 'booking']);
 Route::get('/booking/{code}', [BookingController::class, 'showBooking']);
 
 Route::get('/user/booking', [UserController::class, 'showUserBooking']);
+
+Route::get('/user', [UserController::class, 'user']);

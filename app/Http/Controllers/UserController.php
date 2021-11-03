@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -75,5 +74,31 @@ class UserController extends Controller
             ]);
         }
 
+    }
+
+    public function user(Request $request)
+    {
+        $bearer = $request->bearerToken();
+        $user = User::where('api_token',$bearer)->first();
+
+        if (empty($user)) {
+
+            return response()->json([
+                'error' => [
+                    'code' => 401,
+                    'message' => 'Unauthorized'
+                ]
+            ], 401);
+
+        } else {
+
+            return response()->json([
+                'first_name'      => $user->first_name,
+                'last_name'       => $user->last_name,
+                'phone'           => $user->phone,
+                'document_number' => $user->document_number
+            ]);
+
+        }
     }
 }
