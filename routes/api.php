@@ -32,3 +32,5 @@ Route::get('/tour', [AirportsController::class, 'tour']);
 Route::get('/flight', [FlightController::class, 'flight']);
 
 Route::post('/booking', [BookingController::class, 'booking']);
+
+Route::get('/booking/{code}', [BookingController::class, 'showBooking']);

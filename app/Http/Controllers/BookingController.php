@@ -73,6 +73,64 @@ class BookingController extends Controller
 
     }
 
+
+    public function showBooking($code)
+    {
+        $booking = Booking::where('code', $code)->first();
+
+        if (empty($booking)) {
+
+            return response()->json([
+                'error' => [
+                    'code' => 422,
+                    'message' => 'Does not exist',
+                    'errors' => "[Exist: Does not exist]"
+                ]
+            ], 422,  ['application/json']);
+
+        } else {
+            
+            $flight = $booking->from;
+            $passanger = $booking->passanger;
+            $parsedPassangers = [];
+
+            foreach ($passanger as $value) {
+                $parsedPassangers[] = [
+                    'first_name' => $value['first_name'],
+                    'last_name' => $value['last_name'],
+                    'birth_date' => $value['birth_date'],
+                    'document_number' => $value['document_number'],
+                ];
+            }
+
+            return response()->json([
+                "data" => [
+                    'id'   => $booking->id,
+                    'name' => $flight->from->city . '-' . $flight->to->city,
+                    'from' => [
+                        'country' => $flight->from->country,
+                        'city'    => $flight->from->city,
+                    ],
+                    'to' => [
+                        'city'    => $flight->to->city,
+                        'airport' => $flight->to->airport,
+                    ],
+                    'start_date' => [
+                        'date'   => $flight->booking->date_from,
+                        'time'   => $flight->time_from,
+                    ],
+                    'end_date'   => [
+                        'date'   => $flight->booking->date_back,
+                        'time'   => $flight->time_to,
+                    ],
+                    'cost'  => $flight->cost,
+                    'tourists' => $parsedPassangers
+                ]
+            ]);
+
+        }
+    }
+
     public function createCode(int $count)
     {
         $code = '';
